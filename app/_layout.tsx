@@ -9,6 +9,8 @@ export { ErrorBoundary } from 'expo-router';
 import { ClerkProvider, useAuth, ClerkLoaded } from '@clerk/clerk-expo';
 import * as SecureStore from 'expo-secure-store';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ModalHeaderText from '@/components/ModalHeaderText';
+import Colors from '@/constants/Colors';
 
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
@@ -108,9 +110,20 @@ function RootLayoutNav() {
 				options={{
 					presentation: 'transparentModal',
 					animation: 'fade',
+					headerTransparent: true,
+					headerTitle: () => <ModalHeaderText />,
 					headerLeft: () => (
-						<TouchableOpacity onPress={() => router.back()}>
-							<Ionicons name="close" size={24} color="black" />
+						<TouchableOpacity
+							onPress={() => router.back()}
+							style={{
+								backgroundColor: '#fff',
+								borderColor: Colors.grey,
+								borderRadius: 20,
+								borderWidth: 1,
+								padding: 4,
+							}}
+						>
+							<Ionicons name="close" size={22} color="black" />
 						</TouchableOpacity>
 					),
 				}}
